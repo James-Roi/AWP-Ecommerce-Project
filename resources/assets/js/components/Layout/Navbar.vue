@@ -25,11 +25,11 @@
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li><router-link to="/">Home</router-link></li>
-                    <li><router-link to="/shop">Shop</router-link></li>
-                    <li><router-link to="/packages">Packages</router-link></li>
-                    <li><router-link to="/cart">Cart</router-link></li>
-                    <li><router-link to="/checkout">Checkout</router-link></li>
+                    <li v-bind:class="{active: isCurrentUrl('/')}"><a href="./">Home</a></li>
+                    <li v-bind:class="{active: isCurrentUrl('/shop')}"><a href="./shop">Shop</a></li>
+                    <li><a href="product-details.html">Packages</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -54,3 +54,19 @@
         <!-- Header Area End -->
     </div>
 </template>
+
+<script>
+export default {
+    data(){
+        return {
+            current_url : window.location.pathname
+        }
+    },
+
+    methods:{
+        isCurrentUrl(url){
+            return this.current_url == url;
+        }
+    }
+}
+</script>

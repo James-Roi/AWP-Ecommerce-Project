@@ -94,7 +94,6 @@
 export default {
     data(){
         return{
-            currentRoute: window.location.pathname,
             products: [],
             product: {
                 category_id: '',

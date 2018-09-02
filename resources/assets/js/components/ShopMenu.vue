@@ -9,7 +9,7 @@
     <!--  Catagories  -->
     <div class="catagories-menu">
         <ul>
-            <li class="active"><a href="#">Chairs</a></li>
+            <li class="active"><a href="#">Mineral water</a></li>
             <li v-for="category in categories" v-bind:key="category.id"><a href="#">{{ category.title }}</a></li>
         </ul>
     </div>
@@ -25,26 +25,6 @@
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="amado">
             <label class="form-check-label" for="amado">Amado</label>
-        </div>
-        <!-- Single Form Check -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="ikea">
-            <label class="form-check-label" for="ikea">Ikea</label>
-        </div>
-        <!-- Single Form Check -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="furniture">
-            <label class="form-check-label" for="furniture">Furniture Inc</label>
-        </div>
-        <!-- Single Form Check -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="factory">
-            <label class="form-check-label" for="factory">The factory</label>
-        </div>
-        <!-- Single Form Check -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="artdeco">
-            <label class="form-check-label" for="artdeco">Artdeco</label>
         </div>
     </div>
 </div>

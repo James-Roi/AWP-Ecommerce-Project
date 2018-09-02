@@ -70,4 +70,11 @@ class ProductController extends Controller
             return new ProductResource($product);
         }
     }
+
+    public function ShopProducts()
+    {
+        $products = Product::orderBy('created_at','desc')->paginate(6);
+        
+        return new ProductsResource($products);
+    }
 }

@@ -25,14 +25,14 @@ Copyright &copy; {{date_year}} All rights reserved | This template is made with 
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
                                 <div class="collapse navbar-collapse" id="footerNavContent">
                                     <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="index.html">Home</a>
+                                        <li v-bind:class="{active: isCurrentUrl('/')}" class="nav-item">
+                                            <a class="nav-link" href="./">Home</a>
+                                        </li>
+                                        <li v-bind:class="{active: isCurrentUrl('/shop')}" class="nav-item">
+                                            <a class="nav-link" href="./shop">Shop</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="shop.html">Shop</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="product-details.html">Product</a>
+                                            <a class="nav-link" href="">Packages</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="cart.html">Cart</a>
@@ -54,11 +54,17 @@ Copyright &copy; {{date_year}} All rights reserved | This template is made with 
 
 <script>
 export default {
-    name: 'Study',
     data(){
         return {
-        date_year: new Date().getFullYear()
-      }
+            current_url : window.location.pathname,
+            date_year: new Date().getFullYear()
+        }
+    },
+
+    methods:{
+        isCurrentUrl(url){
+            return this.current_url == url;
+        }
     }
 }
 </script>

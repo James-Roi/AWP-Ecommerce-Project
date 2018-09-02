@@ -45,6 +45,6 @@ Route::get(
 );
 
 //Shop products list
-Route::get('shop/products', 'ShopController@index');
+Route::get('shop/products', 'ProductController@ShopProducts');
 
 //
