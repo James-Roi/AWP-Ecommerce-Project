@@ -24,6 +24,11 @@ Vue.component('products', require('./components/Products.vue'));
 Vue.component('shop', require('./components/Shop.vue'));
 Vue.component('shop-menu', require('./components/ShopMenu.vue'));
 
+// 
+Vue.component('admin-navbar', require('./components/Admin/Layout/AdminNavbar.vue'));
+Vue.component('admin-products', require('./components/Admin/ProductList.vue'));
+Vue.component('edit-product', require('./components/Admin/EditProduct.vue'));
+
 const app = new Vue({
     el: '#app'
 });

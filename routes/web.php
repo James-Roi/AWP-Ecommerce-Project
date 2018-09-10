@@ -18,3 +18,15 @@ Route::get('/', function () {
 Route::get('/shop', function () {
     return view('shop.main');
 });
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/dashboard/products', function () {
+    return view('admin.product.index');
+});
+
+Route::get('/dashboard/product/{product_id}', function () {
+    return view('admin.product.edit');
+});

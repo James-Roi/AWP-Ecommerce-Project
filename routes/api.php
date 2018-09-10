@@ -27,7 +27,7 @@ Route::get('product/{product_id}', 'ProductController@show');
 Route::post('product', 'ProductController@store');
 
 //Update product
-Route::patch('product', 'ProductController@store');
+Route::put('product', 'ProductController@store');
 
 //Delete product
 Route::delete('product/{product_id}', 'ProductController@destroy');
@@ -44,7 +44,8 @@ Route::get(
     ]
 );
 
-//Shop products list
+//Shop product list
 Route::get('shop/products', 'ProductController@ShopProducts');
 
-//
+//Admin product list
+Route::get('dashboard/products', 'ProductController@ProductList');

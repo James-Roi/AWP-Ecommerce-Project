@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <span>
         <!-- Mobile Nav (max width 767px)-->
         <div class="mobile-nav">
             <!-- Navbar Brand -->
@@ -52,7 +52,7 @@
             </div>
         </header>
         <!-- Header Area End -->
-    </div>
+    </span>
 </template>
 
 <script>

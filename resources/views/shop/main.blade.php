@@ -2,11 +2,7 @@
 
 @section('body')
 <shop-menu></shop-menu>
-<div class="amado_product_area section-padding-100">
-    <div class="container-fluid">
-        <shop></shop>
-    </div>
-</div>
+<shop></shop>
 @stop
 
 @section('news')

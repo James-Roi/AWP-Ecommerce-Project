@@ -77,8 +77,7 @@ export default {
                 description:'',
                 id: ''
             },
-            category_id:'',
-            edit: false 
+            category_id:''
         }
     },
 

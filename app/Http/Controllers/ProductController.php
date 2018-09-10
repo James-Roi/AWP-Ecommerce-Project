@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Product;
 use App\Http\Resources\ProductsResource;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
@@ -29,15 +30,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = $request->isMethod('patch') ? Product::findOrFail($request->product_id) : new Product;
+        $product = $request->isMethod('put') ? Product::findOrFail($request->id) : new Product;
 
-        $product->id = $request->input('product_id');
+        $product->id = $request->input('id');
         $product->category_id = $request->input('category_id');
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->image = $request->input('image');
-
         if( $product->save() ){
             return new ProductResource($product);
         }
@@ -65,7 +65,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-
+        
         if( $product->delete() ){
             return new ProductResource($product);
         }
@@ -74,6 +74,13 @@ class ProductController extends Controller
     public function ShopProducts()
     {
         $products = Product::orderBy('created_at','desc')->paginate(6);
+        
+        return new ProductsResource($products);
+    }
+
+    public function ProductList()
+    {
+        $products = Product::orderBy('name','asc')->paginate(12);
         
         return new ProductsResource($products);
     }

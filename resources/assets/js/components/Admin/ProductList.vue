@@ -1,6 +1,6 @@
 <template>
-<div class="amado_product_area section-padding-100">
-            <div class="container-fluid">
+    <div class="products-catagories-area clearfix">
+        <div class="amado-pro-catagory clearfix">
     <div class="row">
         <div class="col-12">
             <div class="product-topbar d-xl-flex align-items-end justify-content-between">
@@ -54,7 +54,7 @@
 
     <div class="row">
         <!-- Single Product Area -->
-        <div class="col-12 col-sm-6 col-md-12 col-xl-6" v-for="product in products" v-bind:key="product.id">
+        <div class="col-lg-3 col-sm-6 col-md-6 col-xl-3" v-for="product in products" v-bind:key="product.id">
             <div class="single-product-wrapper">
                 <!-- Product Image -->
                 <div class="product-img">
@@ -71,18 +71,9 @@
                             <h6>{{ product.name }}</h6>
                         </a>
                     </div>
-                    <!-- Ratings & Cart -->
-                    <div class="ratings-cart text-right">
-                        <div class="ratings">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                        </div>
-                        <div class="cart">
-                            <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                        </div>
+                    <div class="product-meta-data">
+                        <a v-bind:href="'./product/'+ product.id ">Edit</a>
+                        <button v-on:click="deleteProduct(product.id,product.name)">Delete</button>
                     </div>
                 </div>
             </div>
@@ -120,7 +111,7 @@ export default {
     methods: {
         fetchProducts(page_url) {
             let vm = this;
-            page_url = page_url || '/api/shop/products'
+            page_url = page_url || '/api/dashboard/products'
             fetch(page_url)
                 .then(res => res.json())
                 .then(res => {
@@ -142,9 +133,23 @@ export default {
             }
 
             this.pagination = pagination;
+        },
+        deleteProduct(product_id,product_name)
+        {
+            var action = confirm("Are you sure you want to delete product "+product_name+" with id of "+ product_id);
+            if(action == true)
+            {
+                fetch(`/api/product/${product_id}`,{
+                    method: 'delete'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    alert('Product '+product_name+' removed.');
+                    this.fetchProducts();
+                })
+                .catch(err => console.log(err));
+            }
         }
-
-
     }
 }
 </script>
