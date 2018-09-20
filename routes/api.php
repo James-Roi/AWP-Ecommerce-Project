@@ -35,6 +35,15 @@ Route::delete('product/{product_id}', 'ProductController@destroy');
 //Categories list
 Route::get('categories', 'CategoryController@index');
 
+//Show specific category
+Route::get('category/{category_id}', 'CategoryController@show');
+
+//Create new product
+Route::post('category', 'CategoryController@store');
+
+//Update product
+Route::put('category', 'CategoryController@store');
+
 //Show Category
 Route::get(
     'products/{category}/relationships/category',

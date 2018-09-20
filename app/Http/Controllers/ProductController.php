@@ -32,12 +32,29 @@ class ProductController extends Controller
     {
         $product = $request->isMethod('put') ? Product::findOrFail($request->id) : new Product;
 
-        $product->id = $request->input('id');
+        if(strlen($request->input('image'))>0)
+        {
+            $exploded = explode(',', $request->input('image'));
+            $decoded = base64_decode($exploded[1]);
+            $ext = explode('/', $exploded[0]);
+            $ext = explode(';', $ext[1]);
+            $ext = $ext[0];
+    
+            $fileName = "product".$request->input('id').".".$ext;
+    
+            $path = public_path().'/images/products/'.$fileName;
+            file_put_contents($path, $decoded);
+            $path_to_store = substr($path,strpos($path,'/images'));
+            $product->image = '..'.$path_to_store;
+        }
+        else
+        {
+            $product->image = '../images/placeholder.png';
+        }        
         $product->category_id = $request->input('category_id');
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
-        $product->image = $request->input('image');
         if( $product->save() ){
             return new ProductResource($product);
         }
@@ -80,7 +97,7 @@ class ProductController extends Controller
 
     public function ProductList()
     {
-        $products = Product::orderBy('name','asc')->paginate(12);
+        $products = Product::orderBy('name','asc')->paginate(9);
         
         return new ProductsResource($products);
     }

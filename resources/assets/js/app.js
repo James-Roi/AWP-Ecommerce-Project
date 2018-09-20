@@ -5,9 +5,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./bootstrap')
 
-window.Vue = require('vue');
+window.Vue = require('vue')
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,18 +16,10 @@ window.Vue = require('vue');
  */
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('search', require('./components/Layout/Search.vue'));
-Vue.component('navbar', require('./components/Layout/Navbar.vue'));
-Vue.component('news', require('./components/Layout/News.vue'));
-Vue.component('footer-section', require('./components/Layout/Footer.vue'));
-Vue.component('products', require('./components/Products.vue'));
-Vue.component('shop', require('./components/Shop.vue'));
-Vue.component('shop-menu', require('./components/ShopMenu.vue'));
-
-// 
-Vue.component('admin-navbar', require('./components/Admin/Layout/AdminNavbar.vue'));
+Vue.component('admin-save-product', require('./components/Admin/SaveProduct.vue'));
 Vue.component('admin-products', require('./components/Admin/ProductList.vue'));
-Vue.component('edit-product', require('./components/Admin/EditProduct.vue'));
+Vue.component('admin-save-category', require('./components/Admin/SaveCategory.vue'));
+Vue.component('admin-categories', require('./components/Admin/CategoryList.vue'));
 
 const app = new Vue({
     el: '#app'

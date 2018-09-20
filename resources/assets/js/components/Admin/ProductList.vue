@@ -1,86 +1,49 @@
 <template>
-    <div class="products-catagories-area clearfix">
-        <div class="amado-pro-catagory clearfix">
-    <div class="row">
-        <div class="col-12">
-            <div class="product-topbar d-xl-flex align-items-end justify-content-between">
-                <!-- Total Products -->
-                <div class="total-products">
-                    <p>Showing {{ from_item }}-{{ to_item }} 0f {{ item_count }}</p>
-                    <div class="view d-flex">
-                        <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
+    <div>
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Products</h1>
                     </div>
                 </div>
-                <!-- Sorting -->
-                <div class="product-sorting d-flex">
-                    <div class="sort-by-date d-flex align-items-center mr-15">
-                        <p>Sort by</p>
-                        <form action="#" method="get">
-                            <select name="select" id="sortBydate">
-                                <option value="value">Date</option>
-                                <option value="value">Newest</option>
-                                <option value="value">Popular</option>
-                            </select>
-                        </form>
-                    </div>
-                    <div class="view-product d-flex align-items-center">
-                        <p>View</p>
-                        <form action="#" method="get">
-                            <select name="select" id="viewProduct">
-                                <option value="value">12</option>
-                                <option value="value">24</option>
-                                <option value="value">48</option>
-                                <option value="value">96</option>
-                            </select>
-                        </form>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li v-bind:class="[{ disabled: !pagination.previous }]"><a class="page-link btn btn-outline-secondary" @click="fetchProducts(pagination.previous)">Prev</a></li>
+                            <li v-bind:class="[{ disabled: !pagination.next }]"><a class="page-link btn btn-outline-secondary" @click="fetchProducts(pagination.next)">Next</a></li>
+                        </ol>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12">
-            <!-- Pagination -->
-            <nav aria-label="navigation">
-                <ul class="pagination">
-                    <li style="margin-right: 6%;" v-bind:class="[{ disabled: !pagination.previous }]" class="page-item"><a class="page-link" @click="fetchProducts(pagination.previous)">Previous</a></li>
-                    <li v-bind:class="[{ disabled: !pagination.next }]" class="page-item"><a class="page-link" @click="fetchProducts(pagination.next)">Next</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <div class="row">
-        <!-- Single Product Area -->
-        <div class="col-lg-3 col-sm-6 col-md-6 col-xl-3" v-for="product in products" v-bind:key="product.id">
-            <div class="single-product-wrapper">
-                <!-- Product Image -->
-                <div class="product-img">
-                    <img v-bind:src="product.image" alt="">
-                </div>
-
-                <!-- Product Description -->
-                <div class="product-description d-flex align-items-center justify-content-between">
-                    <!-- Product Meta Data -->
-                    <div class="product-meta-data">
-                        <div class="line"></div>
-                        <p class="product-price">₱{{ product.price }}</p>
-                        <a href="product-details.html">
-                            <h6>{{ product.name }}</h6>
-                        </a>
+        <div class="content mt-3">
+            <div class="container">
+                <a href="/dashboard/product/add" class="btn btn-primary">Add Product</a>
+                <br>
+            </div>
+            <div class="container">
+                <h3 class="pb-2 display-5"> Showing {{ from_item }}-{{ to_item }} of {{ item_count }} </h3>
+            </div>
+            <div class="col-md-4" v-for="product in products" v-bind:key="product.id">
+                <div class="card">
+                    <img class="card-img-top" v-bind:src="product.image" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title mb-3">{{ product.name }}</h4>
+                        <h6 class="card-title mb-3">₱{{ product.price }}</h6>
+                        <p class="card-text">{{ product.description }}</p>
                     </div>
-                    <div class="product-meta-data">
-                        <a v-bind:href="'./product/'+ product.id ">Edit</a>
-                        <button v-on:click="deleteProduct(product.id,product.name)">Delete</button>
+                    <div class="card-body">
+                        <a class="btn btn-warning" v-bind:href="'../dashboard/product/' + product.id">Edit</a>
+                        <button @click="deleteProduct(product.id)" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div><!-- .content -->
     </div>
-</div>
-        </div>
 </template>
 
 <script>
@@ -124,16 +87,6 @@ export default {
                 })
                 .catch(err=>console.log(err));
         },
-        makePagination(meta, links){
-            let pagination = {
-                current : meta.current_page,
-                last : meta.last_page,
-                next : links.next,
-                previous : links.prev
-            }
-
-            this.pagination = pagination;
-        },
         deleteProduct(product_id,product_name)
         {
             var action = confirm("Are you sure you want to delete product "+product_name+" with id of "+ product_id);
@@ -149,6 +102,16 @@ export default {
                 })
                 .catch(err => console.log(err));
             }
+        },
+        makePagination(meta, links){
+            let pagination = {
+                current : meta.current_page,
+                last : meta.last_page,
+                next : links.next,
+                previous : links.prev
+            }
+
+            this.pagination = pagination;
         }
     }
 }

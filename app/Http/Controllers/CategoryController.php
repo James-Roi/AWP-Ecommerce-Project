@@ -22,16 +22,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -39,7 +29,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = $request->isMethod('put') ? Category::findOrFail($request->id) : new Category;
+
+        $category->title = $request->input('title');
+        $category->description = $request->input('description');
+        
+        if( $category->save() ){
+            return new CategoryResource($category);
+        }
     }
 
     /**
@@ -48,34 +45,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        Category::withoutWrapping();
+        /*Category::withoutWrapping();
 
+        return new CategoryResource($category);*/
+
+        $category = Category::findOrFail($id);
+    
         return new CategoryResource($category);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -86,6 +64,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        
+        if( $category->delete() ){
+            return new CategoryResource($category);
+        }
     }
 }
