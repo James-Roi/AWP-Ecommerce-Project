@@ -48,6 +48,12 @@
                     <li>
                         <a href="../dashboard/categories"> <i class="menu-icon fa fa-dashboard"></i>Categories</a>
                     </li>
+                    <li>
+                        <a href="../dashboard/packages"> <i class="menu-icon fa fa-dashboard"></i>Packages</a>
+                    </li>
+                    <li>
+                        <a href="../dashboard/inventory"> <i class="menu-icon fa fa-dashboard"></i>Inventory</a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

@@ -32,8 +32,11 @@ Route::put('product', 'ProductController@store');
 //Delete product
 Route::delete('product/{product_id}', 'ProductController@destroy');
 
-//Categories list
+//Category list
 Route::get('categories', 'CategoryController@index');
+
+//Delete category
+Route::delete('category/{category_id}', 'CategoryController@destroy');
 
 //Show specific category
 Route::get('category/{category_id}', 'CategoryController@show');
@@ -58,3 +61,18 @@ Route::get('shop/products', 'ProductController@ShopProducts');
 
 //Admin product list
 Route::get('dashboard/products', 'ProductController@ProductList');
+
+//Admin package list
+Route::get('packages', 'PackageController@showAdminPackages');
+
+//Delete package
+Route::delete('package/{package_id}', 'PackageController@destroy');
+
+//Show specific package
+Route::get('package/{package_id}', 'PackageController@show');
+
+//Create new product
+Route::post('package', 'PackageController@store');
+
+//Update product
+Route::put('package', 'PackageController@store');

@@ -38,6 +38,7 @@ Route::get('/dashboard/product/add', function () {
 });
 //Admin products end
 
+//Admin Category
 
 Route::get('/dashboard/categories', function () {
     return view('admin.category.index');
@@ -50,3 +51,17 @@ Route::get('/dashboard/category/{category_id}', function () {
 Route::get('/dashboard/category/add', function () {
     return view('admin.category.add');
 });
+
+//Admin Category End
+
+//Admin Package
+
+Route::get('/dashboard/packages', function () {
+    return view('admin.package.index');
+});
+
+Route::get('/dashboard/package/{package_id}', function () {
+    return view('admin.package.save');
+});
+
+//Admin Package End

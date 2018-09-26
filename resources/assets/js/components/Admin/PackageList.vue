@@ -13,7 +13,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Categories</a></li>
+                            <li><a href="#">Packages</a></li>
                         </ol>
                     </div>
                 </div>
@@ -24,14 +24,14 @@
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="container">
-                        <a href="/dashboard/category/add" class="btn btn-primary">Add Category</a>
+                        <a href="/dashboard/package/add" class="btn btn-primary">Add Package</a>
                     </div>
                     <br>
                 <div class="col-lg-12">
                     
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Categories</strong>
+                            <strong class="card-title">Packages</strong>
                         </div>
                         <div class="card-body">
                             <table class="table">
@@ -42,15 +42,20 @@
                                 <th>
                                     Description
                                 </th>
+                                <th>
+                                    Price
+                                </th>
                                 <th></th>
                               </thead>
                               <tbody>
-                                <tr v-for="category in categories" v-bind:key="category.id" v-bind:value="category.id">
-                                  <td>{{ category.title }}</td>
-                                  <td>{{ category.description }}</td>
+                                <tr v-for="tpackage in packages" v-bind:key="tpackage.id" v-bind:value="tpackage.id">
+                                  <td>{{ tpackage.title }}</td>
+                                  <td>{{ tpackage.description }}</td>
+                                  <td>{{ tpackage.price }}</td>
                                   <td>
-                                    <a class="btn btn-warning" v-bind:href="'../dashboard/category/' + category.id">Edit</a>
-                                    <button @click="deleteCategory(category.id, category.title)" class="btn btn-danger">Delete</button>
+                                    <a class="btn btn-primary" v-bind:href="'../dashboard/package/' + tpackage.id">View Information</a>
+                                    <a class="btn btn-warning" v-bind:href="'../dashboard/package/' + tpackage.id">Edit</a>
+                                    <button @click="deletePackage(tpackage.id, tpackage.title)" class="btn btn-danger">Delete</button>
                                   </td>
                                 </tr>
                               </tbody>
@@ -68,40 +73,40 @@
 export default {
     data(){
         return{
-            categories: [],
-            category: {
+            packages: [],
+            tpackage: {
                 title:'',
                 description:'',
-                id: ''
+                price: ''
             },
-            category_id: 0
+            package_id: 0
         }
     },
 
     created() {
-        this.fetchCategories();
+        this.fetchPackages();
     },
 
     methods: {
-        fetchCategories() {
-            fetch('/api/categories')
+        fetchPackages() {
+            fetch('/api/packages')
                 .then(res => res.json())
                 .then(res => {
-                    this.categories = res.data;
+                    this.packages    = res.data;
                 })
         },
-        deleteCategory(category_id,category_title)
+        deletePackage(package_id,package_title)
         {
-            var action = confirm("Are you sure you want to delete category "+category_title+" with id of "+ category_id);
+            var action = confirm("Are you sure you want to delete package "+package_title+" with id of "+ package_id);
             if(action == true)
             {
-                fetch(`/api/category/${category_id}`,{
+                fetch(`/api/package/${package_id}`,{
                     method: 'delete'
                 })
                 .then(res => res.json())
                 .then(data => {
-                    alert('Category '+category_title+' removed.');
-                    this.fetchCategories();
+                    alert('Package '+package_title+' removed.');
+                    this.fetchPackages();
                 })
                 .catch(err => console.log(err));
             }

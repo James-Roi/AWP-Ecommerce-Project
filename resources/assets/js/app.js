@@ -20,6 +20,9 @@ Vue.component('admin-save-product', require('./components/Admin/SaveProduct.vue'
 Vue.component('admin-products', require('./components/Admin/ProductList.vue'));
 Vue.component('admin-save-category', require('./components/Admin/SaveCategory.vue'));
 Vue.component('admin-categories', require('./components/Admin/CategoryList.vue'));
+Vue.component('admin-packages', require('./components/Admin/PackageList.vue'));
+Vue.component('admin-save-package', require('./components/Admin/SavePackage.vue'));
+
 
 const app = new Vue({
     el: '#app'

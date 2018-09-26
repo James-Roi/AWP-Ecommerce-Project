@@ -108,6 +108,7 @@ export default {
             .then(res => res.json())
             .then(res => {
                this.product = res.data;
+               this.product.image = "";
             })
         },
         fetchCategories() {

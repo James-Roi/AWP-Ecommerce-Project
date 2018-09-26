@@ -14017,6 +14017,8 @@ Vue.component('admin-save-product', __webpack_require__(40));
 Vue.component('admin-products', __webpack_require__(43));
 Vue.component('admin-save-category', __webpack_require__(46));
 Vue.component('admin-categories', __webpack_require__(49));
+Vue.component('admin-packages', __webpack_require__(57));
+Vue.component('admin-save-package', __webpack_require__(60));
 
 var app = new Vue({
   el: '#app'
@@ -47454,6 +47456,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return res.json();
             }).then(function (res) {
                 _this.product = res.data;
+                _this.product.image = "";
             });
         },
         fetchCategories: function fetchCategories() {
@@ -48078,7 +48081,7 @@ var render = function() {
                     staticClass: "btn btn-danger",
                     on: {
                       click: function($event) {
-                        _vm.deleteProduct(product.id)
+                        _vm.deleteProduct(product.id, product.name)
                       }
                     }
                   },
@@ -48623,13 +48626,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var action = confirm("Are you sure you want to delete category " + category_title + " with id of " + category_id);
             if (action == true) {
-                fetch('/api/category/' + category_title, {
+                fetch('/api/category/' + category_id, {
                     method: 'delete'
                 }).then(function (res) {
                     return res.json();
                 }).then(function (data) {
                     alert('Category ' + category_title + ' removed.');
-                    _this2.fetchProducts();
+                    _this2.fetchCategories();
                 }).catch(function (err) {
                     return console.log(err);
                 });
@@ -48693,7 +48696,10 @@ var render = function() {
                                 staticClass: "btn btn-danger",
                                 on: {
                                   click: function($event) {
-                                    _vm.deleteCategory(category.id)
+                                    _vm.deleteCategory(
+                                      category.id,
+                                      category.title
+                                    )
                                   }
                                 }
                               },
@@ -48802,6 +48808,744 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(58)
+/* template */
+var __vue_template__ = __webpack_require__(59)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Admin/PackageList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-819be806", Component.options)
+  } else {
+    hotAPI.reload("data-v-819be806", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            packages: [],
+            tpackage: {
+                title: '',
+                description: '',
+                price: ''
+            },
+            package_id: 0
+        };
+    },
+    created: function created() {
+        this.fetchPackages();
+    },
+
+
+    methods: {
+        fetchPackages: function fetchPackages() {
+            var _this = this;
+
+            fetch('/api/packages').then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this.packages = res.data;
+            });
+        },
+        deletePackage: function deletePackage(package_id, package_title) {
+            var _this2 = this;
+
+            var action = confirm("Are you sure you want to delete package " + package_title + " with id of " + package_id);
+            if (action == true) {
+                fetch('/api/package/' + package_id, {
+                    method: 'delete'
+                }).then(function (res) {
+                    return res.json();
+                }).then(function (data) {
+                    alert('Package ' + package_title + ' removed.');
+                    _this2.fetchPackages();
+                }).catch(function (err) {
+                    return console.log(err);
+                });
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "content mt-3" }, [
+      _c("div", { staticClass: "animated fadeIn" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("table", { staticClass: "table" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.packages, function(tpackage) {
+                      return _c(
+                        "tr",
+                        { key: tpackage.id, attrs: { value: tpackage.id } },
+                        [
+                          _c("td", [_vm._v(_vm._s(tpackage.title))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(tpackage.description))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(tpackage.price))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  href: "../dashboard/package/" + tpackage.id
+                                }
+                              },
+                              [_vm._v("View Information")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-warning",
+                                attrs: {
+                                  href: "../dashboard/package/" + tpackage.id
+                                }
+                              },
+                              [_vm._v("Edit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                on: {
+                                  click: function($event) {
+                                    _vm.deletePackage(
+                                      tpackage.id,
+                                      tpackage.title
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ])
+                        ]
+                      )
+                    })
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "breadcrumbs" }, [
+      _c("div", { staticClass: "col-sm-4" }, [
+        _c("div", { staticClass: "page-header float-left" }, [
+          _c("div", { staticClass: "page-title" }, [
+            _c("h1", [_vm._v("Dashboard")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-8" }, [
+        _c("div", { staticClass: "page-header float-right" }, [
+          _c("div", { staticClass: "page-title" }, [
+            _c("ol", { staticClass: "breadcrumb text-right" }, [
+              _c("li", [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Dashboard")])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Packages")])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "/dashboard/package/add" }
+        },
+        [_vm._v("Add Package")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("strong", { staticClass: "card-title" }, [_vm._v("Packages")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [
+        _vm._v(
+          "\n                                Title\n                            "
+        )
+      ]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v(
+          "\n                                Description\n                            "
+        )
+      ]),
+      _vm._v(" "),
+      _c("th", [
+        _vm._v(
+          "\n                                Price\n                            "
+        )
+      ]),
+      _vm._v(" "),
+      _c("th")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-819be806", module.exports)
+  }
+}
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(61)
+/* template */
+var __vue_template__ = __webpack_require__(62)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Admin/SavePackage.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-64a78f82", Component.options)
+  } else {
+    hotAPI.reload("data-v-64a78f82", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            page_title: 'Edit Package',
+            method_type: 'put',
+            tpackage: {
+                title: '',
+                description: '',
+                price: '0.00',
+                id: ''
+            }
+        };
+    },
+    created: function created() {
+        if (window.location.pathname.split('/')[3] == 'add') {
+            this.page_title = 'Add Package';
+            this.method_type = 'post';
+        } else this.fetchPackage(window.location.pathname.split('/')[3]);
+    },
+
+
+    methods: {
+        fetchPackage: function fetchPackage(package_id) {
+            var _this = this;
+
+            fetch('/api/package/' + package_id, {
+                method: 'get'
+            }).then(function (res) {
+                return res.json();
+            }).then(function (res) {
+                _this.tpackage = res.data;
+            });
+        },
+        savePackage: function savePackage() {
+            fetch('/api/package', {
+                method: this.method_type,
+                body: JSON.stringify(this.tpackage),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            }).then(function (res) {
+                return res.json();
+            }).catch(function (err) {
+                return console.log(err);
+            });
+            window.location.href = '/dashboard/packages';
+        }
+    }
+});
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "breadcrumbs" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-8" }, [
+        _c("div", { staticClass: "page-header float-right" }, [
+          _c("div", { staticClass: "page-title" }, [
+            _c("ol", { staticClass: "breadcrumb text-right" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", { attrs: { href: "#" } }, [
+                  _vm._v(_vm._s(_vm.page_title))
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "content mt-3" }, [
+      _c("div", { staticClass: "animated fadeIn" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-6" }, [
+            _c(
+              "form",
+              {
+                attrs: { action: "" },
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.savePackage($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-header" }, [
+                    _c("strong", [_vm._v(" " + _vm._s(_vm.page_title))])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body card-block" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: " form-control-label",
+                          attrs: { for: "tpackage_title" }
+                        },
+                        [_vm._v("Package Title")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.tpackage.title,
+                            expression: "tpackage.title"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "tpackage_title",
+                          placeholder: "Package Title"
+                        },
+                        domProps: { value: _vm.tpackage.title },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.tpackage, "title", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-control-label",
+                          attrs: { for: "tpackage_description" }
+                        },
+                        [_vm._v("Description")]
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.tpackage.description,
+                            expression: "tpackage.description"
+                          }
+                        ],
+                        attrs: {
+                          name: "tpackage_description",
+                          id: "",
+                          cols: "64",
+                          rows: "5",
+                          placeholder: "Description"
+                        },
+                        domProps: { value: _vm.tpackage.description },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.tpackage,
+                              "description",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: " form-control-label",
+                          attrs: { for: "package_price" }
+                        },
+                        [_vm._v("Price")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.tpackage.price,
+                            expression: "tpackage.price"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "number",
+                          step: ".01",
+                          id: "package_price",
+                          placeholder: "Package Price"
+                        },
+                        domProps: { value: _vm.tpackage.price },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.tpackage, "price", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-4" }, [
+      _c("div", { staticClass: "page-header float-left" }, [
+        _c("div", { staticClass: "page-title" }, [
+          _c("h1", [_vm._v("Dashboard")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Dashboard")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "btn btn-primary",
+        attrs: { type: "submit", value: "Save" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-64a78f82", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

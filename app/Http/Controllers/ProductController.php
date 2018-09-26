@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Product;
+use App\Inventory;
 use App\Http\Resources\ProductsResource;
 use App\Http\Resources\ProductResource;
 
@@ -31,8 +32,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = $request->isMethod('put') ? Product::findOrFail($request->id) : new Product;
-
-        if(strlen($request->input('image'))>0)
+        
+        if($request->image!="")
         {
             $exploded = explode(',', $request->input('image'));
             $decoded = base64_decode($exploded[1]);
@@ -47,7 +48,7 @@ class ProductController extends Controller
             $path_to_store = substr($path,strpos($path,'/images'));
             $product->image = '..'.$path_to_store;
         }
-        else
+        else if($request->isMethod('post'))
         {
             $product->image = '../images/placeholder.png';
         }        
@@ -55,9 +56,19 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
-        if( $product->save() ){
+
+        if($product->save())
+        {
             return new ProductResource($product);
         }
+
+        //dd($product->last_insert_id());
+
+        //if($request->isMethod('post'))
+        //{
+        //    $inventory = new Inventory();
+            //$inventory->product_id = $product->last_insertid();
+       // }
     }
 
     /**

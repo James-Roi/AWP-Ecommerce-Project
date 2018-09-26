@@ -38,7 +38,7 @@
                     </div>
                     <div class="card-body">
                         <a class="btn btn-warning" v-bind:href="'../dashboard/product/' + product.id">Edit</a>
-                        <button @click="deleteProduct(product.id)" class="btn btn-danger">Delete</button>
+                        <button @click="deleteProduct(product.id, product.name)" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>
