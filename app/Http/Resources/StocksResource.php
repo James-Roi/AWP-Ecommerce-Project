@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Collection;
 
-class ProductRelationshipResource extends Resource
+class StocksResource extends ResourceCollection
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +15,9 @@ class ProductRelationshipResource extends Resource
      */
     public function toArray($request)
     {
-        //die($this->category);
+        //dd($this->collection);
         return [
-            'category' => new CategoryResource($this->category)
+            'data' => StockResource::collection($this->collection)
         ];
     }
 }

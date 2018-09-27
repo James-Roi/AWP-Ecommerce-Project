@@ -11,8 +11,8 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function packages()
+    public function stock()
     {
-        return $this->hasMany(Package::class);
+        return $this->has(Stock::class);
     }
 }

@@ -22,6 +22,8 @@ Vue.component('admin-save-category', require('./components/Admin/SaveCategory.vu
 Vue.component('admin-categories', require('./components/Admin/CategoryList.vue'));
 Vue.component('admin-packages', require('./components/Admin/PackageList.vue'));
 Vue.component('admin-save-package', require('./components/Admin/SavePackage.vue'));
+Vue.component('admin-package-info', require('./components/Admin/PackageInfo.vue'));
+Vue.component('admin-stocks', require('./components/Admin/Stock.vue'));
 
 
 const app = new Vue({

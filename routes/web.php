@@ -64,4 +64,16 @@ Route::get('/dashboard/package/{package_id}', function () {
     return view('admin.package.save');
 });
 
-//Admin Package End
+Route::get('/dashboard/package/info/{package_id}', function () {
+    return view('admin.package.info');
+});
+
+//Admin End Package 
+
+//Admin Stocks
+
+Route::get('/dashboard/stocks', function () {
+    return view('admin.stock.index');
+});
+
+//Admin End Stocks

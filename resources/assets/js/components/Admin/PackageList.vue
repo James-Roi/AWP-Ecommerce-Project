@@ -53,7 +53,7 @@
                                   <td>{{ tpackage.description }}</td>
                                   <td>{{ tpackage.price }}</td>
                                   <td>
-                                    <a class="btn btn-primary" v-bind:href="'../dashboard/package/' + tpackage.id">View Information</a>
+                                    <a class="btn btn-primary" v-bind:href="'../dashboard/package/info/' + tpackage.id">View Information</a>
                                     <a class="btn btn-warning" v-bind:href="'../dashboard/package/' + tpackage.id">Edit</a>
                                     <button @click="deletePackage(tpackage.id, tpackage.title)" class="btn btn-danger">Delete</button>
                                   </td>

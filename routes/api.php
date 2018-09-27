@@ -71,8 +71,14 @@ Route::delete('package/{package_id}', 'PackageController@destroy');
 //Show specific package
 Route::get('package/{package_id}', 'PackageController@show');
 
-//Create new product
+//Create new package
 Route::post('package', 'PackageController@store');
 
-//Update product
+//Update package
 Route::put('package', 'PackageController@store');
+
+//Product stocks
+Route::get('stocks', 'StockController@index');
+
+//Update stock
+Route::put('stock', 'StockController@update');

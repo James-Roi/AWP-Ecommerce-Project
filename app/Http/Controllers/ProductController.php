@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Product;
-use App\Inventory;
+use App\Stock;
 use App\Http\Resources\ProductsResource;
 use App\Http\Resources\ProductResource;
 
@@ -59,6 +59,15 @@ class ProductController extends Controller
 
         if($product->save())
         {
+            if($request->isMethod('post'))
+            {
+                $product_id = $product->id;
+
+                $stock = new Stock();
+                $stock->product_id = $product_id;
+                $stock->save();
+            }
+
             return new ProductResource($product);
         }
 

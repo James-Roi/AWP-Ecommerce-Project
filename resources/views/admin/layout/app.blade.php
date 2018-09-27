@@ -52,7 +52,7 @@
                         <a href="../dashboard/packages"> <i class="menu-icon fa fa-dashboard"></i>Packages</a>
                     </li>
                     <li>
-                        <a href="../dashboard/inventory"> <i class="menu-icon fa fa-dashboard"></i>Inventory</a>
+                        <a href="../dashboard/stocks"> <i class="menu-icon fa fa-dashboard"></i>Stocks</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
