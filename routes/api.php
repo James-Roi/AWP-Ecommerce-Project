@@ -74,6 +74,24 @@ Route::get('package/{package_id}', 'PackageController@show');
 //Create new package
 Route::post('package', 'PackageController@store');
 
+//Show packages products
+Route::get('packages/products', 'PackagesProductController@index');
+
+//Show packages products
+Route::get('package/{package_id}/products', 'PackagesProductController@show');
+
+//Show products for packages
+Route::get('packages/{package_id}/products', 'ProductController@PackageProductList');
+
+//Delete package
+Route::delete('package/product/{package_product_id}', 'PackagesProductController@destroy');
+
+//Create new package
+Route::post('package/product', 'PackagesProductController@store');
+
+//Create new package
+Route::put('package/product', 'PackagesProductController@update');
+
 //Update package
 Route::put('package', 'PackageController@store');
 

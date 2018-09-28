@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Product;
 use App\Stock;
+use App\PackagesProduct;
 use App\Http\Resources\ProductsResource;
 use App\Http\Resources\ProductResource;
 
@@ -119,6 +120,18 @@ class ProductController extends Controller
     {
         $products = Product::orderBy('name','asc')->paginate(9);
         
+        return new ProductsResource($products);
+    }
+
+    public function PackageProductList($id)
+    {
+        $package_product_ids = array();
+        $packages_products = PackagesProduct::all()->where("package_id", "=", $id);
+        foreach($packages_products as $key)
+        {
+            array_push($package_product_ids, $key->product_id);
+        }
+        $products = Product::all()->whereNotIn("id", $package_product_ids);
         return new ProductsResource($products);
     }
 }

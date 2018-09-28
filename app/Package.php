@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model
 {
-    public function products()
+    public function packages()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(PackagesProduct::class);
     }
 }

@@ -15,4 +15,9 @@ class Product extends Model
     {
         return $this->has(Stock::class);
     }
+
+    public function packages_product()
+    {
+        return $this->hasMany(PackagesProduct::class);
+    }
 }
