@@ -147,7 +147,19 @@
                 </div>
 
                 <div class="col-sm-5">
-                    <div class="user-area dropdown float-right">
+                    {{-- temp only logout --}}
+                    <a class="float-right" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+            
+         
+                    {{-- <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="../images/admin.jpg" alt="User Avatar">
                         </a>
@@ -181,7 +193,7 @@
                                 <i class="flag-icon flag-icon-it"></i>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

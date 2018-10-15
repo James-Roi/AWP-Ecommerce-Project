@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label for="category_id" class=" form-control-label">Category</label>
                             <select name="categroy_id" id="category_id" class="form-control" v-model="product.category_id">
-                                <option value="" seleced>----------</option>
+                                <option value="" selected>----------</option>
                                 <option v-for="category in categories" v-bind:key="category.id" v-bind:value="category.id">{{ category.title }}</option>
                             </select>
                         </div>
