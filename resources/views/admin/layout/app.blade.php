@@ -33,26 +33,26 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="../"><img src="../images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="../"><img src="../images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="../">Aviso Wellness Protocol</a>
+                <a class="navbar-brand hidden" href="../">AWP</a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="../dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="/dashboard"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <li>
-                        <a href="../dashboard/products"> <i class="menu-icon fa fa-dashboard"></i>Products</a>
+                        <a href="/dashboard/products"> <i class="menu-icon fa fa-dashboard"></i>Products</a>
                     </li>
                     <li>
-                        <a href="../dashboard/categories"> <i class="menu-icon fa fa-dashboard"></i>Categories</a>
+                        <a href="/dashboard/categories"> <i class="menu-icon fa fa-dashboard"></i>Categories</a>
                     </li>
                     <li>
-                        <a href="../dashboard/packages"> <i class="menu-icon fa fa-dashboard"></i>Packages</a>
+                        <a href="/dashboard/packages"> <i class="menu-icon fa fa-dashboard"></i>Packages</a>
                     </li>
                     <li>
-                        <a href="../dashboard/stocks"> <i class="menu-icon fa fa-dashboard"></i>Stocks</a>
+                        <a href="/dashboard/stocks"> <i class="menu-icon fa fa-dashboard"></i>Stocks</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
