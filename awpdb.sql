@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2018 at 05:52 AM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Oct 20, 2018 at 05:01 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `avisowellness`
+-- Database: `awpdb`
 --
 
 -- --------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Water', 'Heals cancer and the best', '2018-09-02 05:30:03', '2018-09-25 18:41:36'),
+(1, 'Alkaline Water', 'Heals cancer and the best', '2018-09-02 05:30:03', '2018-10-16 22:03:24'),
 (2, 'Pill', 'Works like dbz magic beans', '2018-09-02 05:56:18', '2018-09-02 05:56:18');
 
 -- --------------------------------------------------------
@@ -61,7 +61,6 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2018_08_30_073507_create_category_table', 1),
 (4, '2018_09_02_050251_create_products_table', 2),
@@ -71,7 +70,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2018_09_25_041228_create_packages_products_table', 5),
 (9, '2018_09_25_041707_create_packages_products_table', 6),
 (10, '2018_09_25_042021_create_packages_products_table', 7),
-(11, '2018_09_27_120920_create_stocks_table', 8);
+(11, '2018_09_27_120920_create_stocks_table', 8),
+(12, '2014_10_12_000000_create_users_table', 9);
 
 -- --------------------------------------------------------
 
@@ -116,7 +116,10 @@ CREATE TABLE `packages_products` (
 --
 
 INSERT INTO `packages_products` (`id`, `package_id`, `product_id`, `product_quantity`, `created_at`, `updated_at`) VALUES
-(19, 5, 48, 1, '2018-09-29 03:30:49', '2018-09-29 03:30:49');
+(19, 5, 48, 1, '2018-09-29 03:30:49', '2018-09-29 03:30:49'),
+(20, 6, 48, 3, '2018-10-16 21:57:41', '2018-10-16 22:00:12'),
+(21, 6, 49, 2, '2018-10-16 21:58:01', '2018-10-16 21:59:24'),
+(22, 6, 50, 2, '2018-10-16 21:59:03', '2018-10-16 21:59:22');
 
 -- --------------------------------------------------------
 
@@ -153,7 +156,11 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `description`, `price`, `image`, `created_at`, `updated_at`) VALUES
 (48, 2, 'Product1', 'Product1 description', '434.00', '../images/placeholder.png', '2018-09-27 23:16:04', '2018-09-27 23:17:17'),
-(49, 1, 'Product2', 'Product2', '4234.00', '../images/placeholder.png', '2018-09-28 20:09:57', '2018-09-28 20:09:57');
+(49, 1, 'Product2', 'Product2', '4234.00', '../images/placeholder.png', '2018-09-28 20:09:57', '2018-09-28 20:09:57'),
+(50, 1, 'Product 3', 'Product 3', '200.00', '../images/placeholder.png', '2018-10-16 21:49:56', '2018-10-16 21:49:56'),
+(51, 2, 'Product 4', 'Product 4', '200.00', '../images/placeholder.png', '2018-10-16 22:01:11', '2018-10-16 22:01:11'),
+(52, 1, 'Product 5', 'Product 5', '500.00', '../images/placeholder.png', '2018-10-16 22:01:26', '2018-10-16 22:01:26'),
+(53, 2, 'Product 6', 'Product 6', '500.00', '../images/placeholder.png', '2018-10-16 22:02:08', '2018-10-16 22:02:08');
 
 -- --------------------------------------------------------
 
@@ -175,7 +182,11 @@ CREATE TABLE `stocks` (
 
 INSERT INTO `stocks` (`id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
 (1, 48, 12, '2018-09-27 23:16:05', '2018-09-28 02:46:35'),
-(2, 49, 0, '2018-09-28 20:09:57', '2018-09-28 20:09:57');
+(2, 49, 10, '2018-09-28 20:09:57', '2018-10-16 21:46:09'),
+(3, 50, 10, '2018-10-16 21:49:56', '2018-10-16 22:04:28'),
+(4, 51, 10, '2018-10-16 22:01:11', '2018-10-16 22:04:32'),
+(5, 52, 10, '2018-10-16 22:01:26', '2018-10-16 22:04:34'),
+(6, 53, 15, '2018-10-16 22:02:08', '2018-10-16 22:04:39');
 
 -- --------------------------------------------------------
 
@@ -188,10 +199,18 @@ CREATE TABLE `users` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `is_admin`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'admin@test.com', '$2y$10$LwhSeNdSi8h7.TpTxhoRDO.Ta9RSyep3JMCTY51CYL5GMvaal7hTi', 1, '6jZhsHYYzaN6BanawNPjZkxz7lTiOoNYZ3ow4ANDJYzbxumtGo4RyNc7uiQv', '2018-10-16 21:42:36', '2018-10-16 21:42:36');
 
 --
 -- Indexes for dumped tables
@@ -264,7 +283,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -276,25 +295,25 @@ ALTER TABLE `packages`
 -- AUTO_INCREMENT for table `packages_products`
 --
 ALTER TABLE `packages_products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
