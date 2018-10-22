@@ -67,7 +67,7 @@
                     <div class="product-meta-data">
                         <div class="line"></div>
                         <p class="product-price">₱{{ product.price }}</p>
-                        <a href="product-details.html">
+                        <a href="/shop">
                             <h6>{{ product.name }}</h6>
                         </a>
                     </div>
@@ -81,7 +81,7 @@
                             <i class="fa fa-star" aria-hidden="true"></i>
                         </div>
                         <div class="cart">
-                            <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                            <a href="/shop" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="/client/assets/img/core-img/cart.png" alt=""></a>
                         </div>
                     </div>
                 </div>

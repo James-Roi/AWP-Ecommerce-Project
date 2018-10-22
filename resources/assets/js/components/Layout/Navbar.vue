@@ -4,7 +4,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                <!-- <a href="index.html"><img src="img/core-img/logo.png" alt=""></a> -->
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -20,16 +20,15 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="/" style="font-size: 30px;">Aviso Wellness Protocol</a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
                     <li v-bind:class="{active: isCurrentUrl('/')}"><a href="./">Home</a></li>
                     <li v-bind:class="{active: isCurrentUrl('/shop')}"><a href="./shop">Shop</a></li>
-                    <li><a href="product-details.html">Packages</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="/shop">Packages</a></li>
+                    <li><a href="/shop">Cart</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -39,9 +38,8 @@
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.html" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-                <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
-                <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
+                <a href="#" class="cart-nav"><img src="/client/assets/img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+                <a href="#" class="search-nav"><img src="/client/assets/img/core-img/search.png" alt=""> Search</a>
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">

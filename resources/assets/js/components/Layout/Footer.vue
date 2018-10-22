@@ -8,7 +8,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.html"><img src="img/core-img/logo2.png" alt=""></a>
+                           
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -26,19 +26,16 @@ Copyright &copy; {{date_year}} All rights reserved | This template is made with 
                                 <div class="collapse navbar-collapse" id="footerNavContent">
                                     <ul class="navbar-nav ml-auto">
                                         <li v-bind:class="{active: isCurrentUrl('/')}" class="nav-item">
-                                            <a class="nav-link" href="./">Home</a>
+                                            <a class="nav-link" href="/">Home</a>
                                         </li>
                                         <li v-bind:class="{active: isCurrentUrl('/shop')}" class="nav-item">
-                                            <a class="nav-link" href="./shop">Shop</a>
+                                            <a class="nav-link" href="/shop">Shop</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="">Packages</a>
+                                            <a class="nav-link" href="/shop">Packages</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="cart.html">Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.html">Checkout</a>
+                                            <a class="nav-link" href="/shop">Cart</a>
                                         </li>
                                     </ul>
                                 </div>

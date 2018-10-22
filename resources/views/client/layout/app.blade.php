@@ -45,7 +45,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.html"><img src="./client/assets/img/core-img/logo.png" alt=""></a>
+                <a href="/"><img src="./client/assets/img/core-img/logo.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -73,7 +73,7 @@
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.html" class="cart-nav"><img src="./client/assets/img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+                <a href="/" class="cart-nav"><img src="./client/assets/img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
                 <a href="#" class="search-nav"><img src="./client/assets/img/core-img/search.png" alt=""> Search</a>
             </div>
             <!-- Social Button -->
@@ -91,19 +91,6 @@
             <div class="amado-pro-catagory clearfix">
 
                 @yield('content')
-
-                <!-- Single Catagory -->
-                <!-- <div class="single-products-catagory clearfix">
-                    <a href="shop.html">
-                        <img src="./client/assets/img/bg-img/1.jpg" alt=""> -->
-                        <!-- Hover Content -->
-                <!--         <div class="hover-content">
-                            <div class="line"></div>
-                            <p>From $180</p>
-                            <h4>Modern Chair</h4>
-                        </div>
-                    </a>
-                </div> -->
 
             </div>
         </div>
@@ -139,6 +126,7 @@
     @include('client.layout.footer')
     
 
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="./client/assets/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
